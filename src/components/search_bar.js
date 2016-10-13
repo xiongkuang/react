@@ -4,6 +4,8 @@ import React, { Component } from 'react';//equals to const Component = React.Com
 //     return <input />;
 // }
 
+
+
 class SearchBar extends Component{
     render(){
         return <input />;
