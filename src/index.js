@@ -20,10 +20,16 @@ class App extends Component{
     constructor(props){
         super(props);
 
-        this.state = { videos: [] };
+        this.state = {
+            videos: [],
+            selectedVideo: null
+        };
 
-        YTSearch({key: API_KEY, term: 'rotk'}, (videos) => {
-            this.setState({ videos });
+        YTSearch({key: API_KEY, term: 'PPAP'}, (videos) => {
+            this.setState({
+                videos:videos,
+                selectedVideo:videos[0]
+            });
             //this.setState({ videos : videos}); //if the key and the property has the same name
         });
 
@@ -33,8 +39,10 @@ class App extends Component{
         return(
             <div>
                 <SearchBar/>
-                <VideoDetail video={this.state.videos[0]}/>
-                <VideoList videos = {this.state.videos} />
+                <VideoDetail video={this.state.selectedVideo}/>
+                <VideoList
+                    onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+                    videos = {this.state.videos} />
             </div>
         );
     }
